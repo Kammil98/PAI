@@ -3,10 +3,12 @@
 	<head>
 		 <meta charset="utf-8" />
 		 <title>JavaScript</title>
-		 <script src="form_check.js"></script>
+		 <script src="form_check.js">
+			
+		 </script>
 		 <link rel="stylesheet" type="text/css" href="style.css" title="my main CSS styles">
 	</head>
-	<body>
+	<body onload="alterRows(1, document.getElementsByTagName('tbody'))">
 		<table>
 			 <tbody>
 				 <tr><td>Wiersz 1</td></tr>
@@ -16,9 +18,10 @@
 				 <tr><td>Wiersz 5</td></tr>
 				 <tr><td>Wiersz 6</td></tr>
 				 <tr><td>Wiersz 7</td></tr>
+				 <p id="demo"></p>
 			 </tbody>
 		</table>
-
+		<td colspan="2"><input type="submit" onclick="swapRows(this);" value="Prześlij"></td>
 		 <form name="dane_osobowe">
 			 <table>
 				 <tr><td>Imię</td><td><input type="text" name="f_imie"></td></tr>
@@ -43,7 +46,17 @@
 				 <tr><td><span class="err" id="e_ulica" /></td></tr>
 				 <tr><td>Miasto</td><td><input type="text" name="f_miasto"></td></tr>
 				 <tr><td><span class="err" id="e_miasto" /></td></tr>
-				 <tr><td>Uwagi</td><td><textarea rows="5" cols="15" name="uwagi"></textarea>
+				 <tr>
+					<td>Uwagi</td>
+					<td>
+						<textarea rows="5" cols="15" name="uwagi"
+							onkeyup="cnt(this.form.uwagi, document.getElementById('zostalo'), 150)">
+						</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>Pozostało <span id="zostalo">150</span> znaków</td>
+				</tr>
 				 </td></tr>
 				 <tr>
 					<td colspan="2"><input type="submit" onclick="return validate(this.form);" value="Prześlij"></td>
