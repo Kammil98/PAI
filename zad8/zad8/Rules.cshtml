@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+@{
+    var rules = new List<String>()
+    {
+        "Tony Stark", "Iron Man",
+        "Steve Rogers", "Captain America"
+    };
+    if (Session["rules"] == null)
+    {
+        Session["rules"] = rules;
+    }
+    rules = (List<String>)Session["rules"];
+}
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <fieldset>
+        <legend>Logowanie:</legend>
+        <form action="Name.cshtml" method="post">
+            Imie: <input type=text name="rule" /><br />
+            <input type=submit name="send" value="prześlij" />
+        </form>
+    </fieldset>
+    <ul>
+        @foreach (var rule in rules)
+        {
+            <li>@rule</li>
+        }
+    </ul>
+</body>
+</html>
