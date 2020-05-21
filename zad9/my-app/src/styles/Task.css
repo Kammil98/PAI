@@ -1,0 +1,4 @@
+
+input[type="checkbox"]:checked#checkbox1 + label {
+    text-decoration: line-through;
+}
