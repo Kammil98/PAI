@@ -6,9 +6,8 @@ class NewTask extends Component {
   render() {
     return (
       <div className="NewTask">
-        <input type="text" onChange={() => this.props.updateInputValue(event)}/>
-        <button onClick={() => this.props.addTask()}>Add</button>
-
+          <input type="text" name="inputValue" value={this.props.text} onChange={() => this.props.updateValue(event)}/>
+          <button onClick={() => this.props.addTask()}>Add</button>
       </div>
     );
   }

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import logo from '../images/logo.svg';
 import '../styles/App.css';
 import Header from "./Header";
 import Filter from "./Filter";
 import ToDoList from "./ToDoList";
 import NewTask from "./NewTask";
 import taskContentList from '../TaskContentList';
-import hiddenContentList from '../HiddenTasksList';
 
 class App extends Component {
   constructor(){
@@ -30,10 +28,12 @@ class App extends Component {
   }
 
   updateInputValue(evt){
-    this.setState({inputValue: evt.target.value});
+    const {name, value, type, checked} = evt.target;
+    type ==="checkbox" ? this.setState({[name]: checked})
+                        : this.setState({[name]: value});
   }
 
-  addTask(){
+  addTask(event){
     console.log("dzialam");
     this.setState(prevState =>{
         return{
@@ -46,27 +46,26 @@ class App extends Component {
       text: this.state.inputValue,
       completed: false
     });
-
   }
 
   render() {
-    const hideDoneTasks=false;
-
     return (
       <div className="App">
         <Header
         hideDoneTasks/>
         <fieldset>
           <Filter
-            hiding = {this.hiding}/>
+            hideDone={this.state.hideDone}
+            updateValue={this.updateInputValue}/>
           <hr/>
           <ToDoList
-            filter = {this.state.hideDone}
-            hideDone = {this.state.hideDone}
-            actualList = {this.state.actualList}/>
+            filter={this.state.hideDone}
+            hideDone={this.state.hideDone}
+            actualList={this.state.actualList}/>
           <hr/>
           <NewTask
-              updateInputValue={this.updateInputValue}
+              text={this.state.inputValue}
+              updateValue={this.updateInputValue}
               addTask={this.addTask}/>
         </fieldset>
       </div>

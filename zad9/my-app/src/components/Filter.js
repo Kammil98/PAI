@@ -5,7 +5,9 @@ class Filter extends Component {
     return (
       <div className="Filter">
         <input type="checkbox" id="checkboxHide"
-              onChange={() => this.props.hiding(event)}/>
+              name="hideDone"
+              checked={this.props.hideDone}
+              onChange={() => this.props.updateValue(event)}/>
         <label className="hideCompleted">
           hide completed
         </label>
